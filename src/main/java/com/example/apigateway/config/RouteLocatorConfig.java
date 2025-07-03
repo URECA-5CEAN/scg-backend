@@ -14,7 +14,7 @@ public class RouteLocatorConfig {
         return builder.routes()
 //                .route("path_route", r -> r.path("/login")
 //                        .uri("http://10.0.2.204:8081"))
-                .route("path_route", r -> r.path("/health")
+                .route("path_route", r -> r.path("api/health")
                         .uri("http://10.0.2.204:8082"))
 //                .route("host_route", r -> r.host("*.myhost.org")
 //                        .uri("http://httpbin.org"))
