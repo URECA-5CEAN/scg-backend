@@ -12,10 +12,10 @@ public class RouteLocatorConfig {
     @Bean
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route("path_route", r -> r.path("/login")
-                        .uri("http://localhost:8081"))
+//                .route("path_route", r -> r.path("/login")
+//                        .uri("http://10.0.2.204:8081"))
                 .route("path_route", r -> r.path("/health")
-                        .uri("http://localhost:8082"))
+                        .uri("http://10.0.2.204:8082"))
 //                .route("host_route", r -> r.host("*.myhost.org")
 //                        .uri("http://httpbin.org"))
 //                .route("rewrite_route", r -> r.host("*.rewrite.org")
