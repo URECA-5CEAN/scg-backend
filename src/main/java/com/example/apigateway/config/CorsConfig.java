@@ -13,9 +13,9 @@ public class CorsConfig {
     public CorsWebFilter corsWebFilter() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.addAllowedOrigin("http://15.164.81.45"); // 프론트 도메인
+        config.addAllowedOrigin("http://15.164.81.45");
         config.addAllowedHeader("*");
-        config.addAllowedMethod("*"); // 또는 "GET", "POST" 등 명시적으로 설정
+        config.addAllowedMethod("*"); //get, post, put, delete 모두
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
