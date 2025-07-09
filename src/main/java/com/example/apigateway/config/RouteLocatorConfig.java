@@ -20,6 +20,8 @@ public class RouteLocatorConfig {
                         .uri("http://10.0.1.17:8081"))
                 .route("path_route", r-> r.path("/api/map/**")
                         .uri("http://10.0.1.239:8082"))
+                .route("path_route", r-> r.path("/api/ai/**")
+                        .uri("http://10.0.1.141:8082"))
 //                .route("host_route", r -> r.host("*.myhost.org")
 //                        .uri("http://httpbin.org"))
 //                .route("rewrite_route", r -> r.host("*.rewrite.org")
