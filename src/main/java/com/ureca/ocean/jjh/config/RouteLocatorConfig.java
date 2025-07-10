@@ -1,4 +1,4 @@
-package com.example.apigateway.config;
+package com.ureca.ocean.jjh.config;
 
 
 import org.springframework.cloud.gateway.route.RouteLocator;
@@ -12,16 +12,18 @@ public class RouteLocatorConfig {
     @Bean
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
         return builder.routes()
-//                .route("path_route", r -> r.path("/login")
-//                        .uri("http://10.0.2.204:8081"))
-                .route("path_route", r -> r.path("/api/health")
-                        .uri("http://10.0.2.204:8080"))
                 .route("path_route", r-> r.path("/api/auth/**")
                         .uri("http://10.0.1.17:8081"))
+//                .route("path_route", r-> r.path("/api/auth/**")
+//                        .uri("http://localhost:8081"))
                 .route("path_route", r-> r.path("/api/map/**")
                         .uri("http://10.0.1.239:8082"))
                 .route("path_route", r-> r.path("/api/ai/**")
                         .uri("http://10.0.1.141:8082"))
+                .route("path_route", r -> r.path("/api/user/**")
+                        .uri("http://10.0.2.41:8081"))
+//                .route("path_route", r -> r.path("/api/user/**")
+//                        .uri("http://localhost:8082"))
 //                .route("host_route", r -> r.host("*.myhost.org")
 //                        .uri("http://httpbin.org"))
 //                .route("rewrite_route", r -> r.host("*.rewrite.org")
