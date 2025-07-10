@@ -21,7 +21,7 @@ public class RouteLocatorConfig {
                 .route("path_route", r-> r.path("/api/ai/**")
                         .uri("http://10.0.1.141:8082"))
                 .route("path_route", r -> r.path("/api/user/**")
-                        .uri("http://10.0.2.41:8081"))
+                        .uri("http://10.0.2.41:8082"))
 //                .route("path_route", r -> r.path("/api/user/**")
 //                        .uri("http://localhost:8082"))
 //                .route("host_route", r -> r.host("*.myhost.org")
