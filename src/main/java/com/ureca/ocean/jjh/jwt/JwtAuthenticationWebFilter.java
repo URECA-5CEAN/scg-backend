@@ -48,7 +48,7 @@ public class JwtAuthenticationWebFilter implements WebFilter {
 			ServerWebExchange mutatedExchange = exchange.mutate()
 					.request(mutatedRequest)
 					.build();
-
+			log.info("username header에 추가 : " + username);
 			return chain.filter(mutatedExchange)
 					.contextWrite(ReactiveSecurityContextHolder.withSecurityContext(Mono.just(context)));
 
