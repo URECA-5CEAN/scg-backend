@@ -15,6 +15,8 @@ import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Component
@@ -40,9 +42,10 @@ public class JwtAuthenticationWebFilter implements WebFilter {
 //					.contextWrite(ReactiveSecurityContextHolder.withSecurityContext(Mono.just(context)));
 
 			//userId를 microservice로 넘기기 후
+			String encodedUsername = URLEncoder.encode(username, StandardCharsets.UTF_8);
 			ServerHttpRequest mutatedRequest = exchange.getRequest()
 					.mutate()
-					.header("X-User-email", username)
+					.header("X-User-email", encodedUsername)
 					.build();
 
 			ServerWebExchange mutatedExchange = exchange.mutate()
