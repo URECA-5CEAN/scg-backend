@@ -30,14 +30,13 @@ public class JwtUtil {
     }
 
 
-    // 토큰에서 username 추출 (DB 조회 없이)
-    public String getUsernameFromToken(String token) {
+    public String getEmailFromToken(String token) {
         return Jwts.parser()
                 .verifyWith(secretKey)
                 .build()
                 .parseSignedClaims(token)
                 .getPayload()
-                .getSubject();
+                .get("email", String.class); // 👈 claim에서 email 꺼내기
     }
 
     // 토큰 서명 및 만료 검증

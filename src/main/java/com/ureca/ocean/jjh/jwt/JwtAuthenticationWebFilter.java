@@ -31,9 +31,9 @@ public class JwtAuthenticationWebFilter implements WebFilter {
 		String token = exchange.getRequest().getHeaders().getFirst("Authorization");
 		log.info("token : " + token);
 		if (token != null && jwtUtil.validateToken(token)) {
-			String username = jwtUtil.getUsernameFromToken(token); //username의 실제 값은 auth-backend에서 email을 넣어서 보내줌.
+			String email = jwtUtil.getEmailFromToken(token); //username의 실제 값은 auth-backend에서 email을 넣어서 보내줌.
 
-			Authentication auth = new UsernamePasswordAuthenticationToken(username, null, List.of());
+			Authentication auth = new UsernamePasswordAuthenticationToken(email, null, List.of());
 			SecurityContext context = new SecurityContextImpl(auth);
 
 
@@ -42,7 +42,7 @@ public class JwtAuthenticationWebFilter implements WebFilter {
 //					.contextWrite(ReactiveSecurityContextHolder.withSecurityContext(Mono.just(context)));
 
 			//userId를 microservice로 넘기기 후
-			String encodedUsername = URLEncoder.encode(username, StandardCharsets.UTF_8);
+			String encodedUsername = URLEncoder.encode(email, StandardCharsets.UTF_8);
 			ServerHttpRequest mutatedRequest = exchange.getRequest()
 					.mutate()
 					.header("X-User-email", encodedUsername)
@@ -51,7 +51,7 @@ public class JwtAuthenticationWebFilter implements WebFilter {
 			ServerWebExchange mutatedExchange = exchange.mutate()
 					.request(mutatedRequest)
 					.build();
-			log.info("username header에 추가 : " + username);
+			log.info("username header에 추가 : " + email);
 			return chain.filter(mutatedExchange)
 					.contextWrite(ReactiveSecurityContextHolder.withSecurityContext(Mono.just(context)));
 
