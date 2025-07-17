@@ -35,7 +35,7 @@ public class SecurityConfig {
                                 "/webjars/**",
                                 "/api/auth/login",
                                 "/api/user/signup",
-                                "/api/**/v3/api-docs"   // 여기에 추가
+                                "/api/user/v3/api-docs"
                         ).permitAll()
                         .anyExchange().authenticated()
                 )
