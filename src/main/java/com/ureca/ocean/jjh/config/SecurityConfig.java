@@ -26,7 +26,15 @@ public class SecurityConfig {
                 .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(entryPoint))
                 .authorizeExchange(exchange -> exchange
-                        .pathMatchers("/", "/index.html","/api/auth/login","/api/user/signup").permitAll()
+                        .pathMatchers(
+                                "/",
+                                "/swagger-ui/**",       // swagger-ui.html, css, js 등 정적 리소스 포함
+                                "/v3/api-docs/**",      // OpenAPI json 문서
+                                "/swagger-resources/**",// Swagger 관련 리소스
+                                "/webjars/**",          // Swagger UI 의존성 리소스
+                                "/api/auth/login",
+                                "/api/user/signup"
+                        ).permitAll()
                         .anyExchange().authenticated()
                 )
                 .addFilterAt(new JwtAuthenticationWebFilter(jwtUtil),  SecurityWebFiltersOrder.AUTHENTICATION)
