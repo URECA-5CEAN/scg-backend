@@ -29,12 +29,13 @@ public class SecurityConfig {
                         .pathMatchers(
                                 "/",
                                 "/swagger-ui/index.html",
-                                "/swagger-ui/**",       // swagger-ui.html, css, js 등 정적 리소스 포함
-                                "/v3/api-docs/**",      // OpenAPI json 문서
-                                "/swagger-resources/**",// Swagger 관련 리소스
-                                "/webjars/**",          // Swagger UI 의존성 리소스
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**",
+                                "/swagger-resources/**",
+                                "/webjars/**",
                                 "/api/auth/login",
-                                "/api/user/signup"
+                                "/api/user/signup",
+                                "/api/**/v3/api-docs"   // 여기에 추가
                         ).permitAll()
                         .anyExchange().authenticated()
                 )
