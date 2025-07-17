@@ -28,6 +28,7 @@ public class SecurityConfig {
                 .authorizeExchange(exchange -> exchange
                         .pathMatchers(
                                 "/",
+                                "/swagger-ui/index.html",
                                 "/swagger-ui/**",       // swagger-ui.html, css, js 등 정적 리소스 포함
                                 "/v3/api-docs/**",      // OpenAPI json 문서
                                 "/swagger-resources/**",// Swagger 관련 리소스
