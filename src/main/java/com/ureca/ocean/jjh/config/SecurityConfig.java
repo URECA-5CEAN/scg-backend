@@ -32,12 +32,14 @@ public class SecurityConfig {
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**",
                                 "/swagger-resources/**",
-                                "/api-docs/swagger-config", //
+                                "/api-docs/swagger-config",
                                 "/api-ui.html",
                                 "/webjars/**",
                                 "/api/auth/login",
                                 "/api/user/signup",
-                                "/api/user/v3/api-docs"
+                                "/api/user/v3/api-docs",
+                                "/api/ai/v3/api-docs",
+                                "/api/map/v3/api-docs"
                         ).permitAll()
                         .anyExchange().authenticated()
                 )
