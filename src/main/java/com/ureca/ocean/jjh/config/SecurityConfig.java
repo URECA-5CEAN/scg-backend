@@ -39,6 +39,7 @@ public class SecurityConfig {
                                 "/api/user/v3/api-docs",
                                 "/api/ai/v3/api-docs",
                                 "/api/map/v3/api-docs",
+                                "/api/store",
                                 "/api/map/store",
                                 "/api/map/store/*"
                         ).permitAll()
