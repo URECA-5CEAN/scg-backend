@@ -14,10 +14,14 @@ public class CorsConfig {
     @Bean
     public CorsWebFilter corsWebFilter() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);
-        config.setAllowedOrigins(List.of("http://15.164.81.45","http://localhost:5173","http://127.0.0.1:5173"));
+        config.setAllowCredentials(false); // 쿠키 사용 안 하므로 false
+        config.setAllowedOriginPatterns(List.of(
+                "http://127.0.0.1:*",
+                "http://localhost:*",
+                "http://15.164.81.45"
+        ));
         config.addAllowedHeader("*");
-        config.addAllowedMethod("*"); //get, post, put, delete 모두
+        config.addAllowedMethod("*");
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
