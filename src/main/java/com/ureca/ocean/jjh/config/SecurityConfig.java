@@ -20,7 +20,7 @@ public class SecurityConfig {
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
         return http
-                .cors(cors->cors.disable())
+                .cors(ServerHttpSecurity.CorsSpec::disable)
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
                 .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
@@ -47,7 +47,8 @@ public class SecurityConfig {
                                 "/api/map/store",
                                 "/api/map/store/*",
                                 "/api/user/chat/ws/**",
-                                "/api/user/chat/ws/info"
+                                "/api/user/chat/ws/info",
+                                "/api/user/chat/ws/info/**"
                         ).permitAll()
                         .anyExchange().authenticated()
                 )

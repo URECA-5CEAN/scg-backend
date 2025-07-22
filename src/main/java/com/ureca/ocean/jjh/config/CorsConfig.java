@@ -7,18 +7,18 @@ import org.springframework.web.cors.reactive.CorsWebFilter;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
 import java.util.List;
-
 @Configuration
 public class CorsConfig {
 
     @Bean
     public CorsWebFilter corsWebFilter() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(false); // 쿠키 사용 안 하므로 false
+
+        config.setAllowCredentials(true);
         config.setAllowedOriginPatterns(List.of(
-                "http://127.0.0.1:*",
-                "http://localhost:*",
-                "http://15.164.81.45"
+                "http://127.0.0.1:5173",
+                "http://localhost:5173",
+                "http://15.164.81.45:5173"
         ));
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
@@ -29,3 +29,4 @@ public class CorsConfig {
         return new CorsWebFilter(source);
     }
 }
+
