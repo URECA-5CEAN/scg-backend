@@ -28,6 +28,10 @@ public class JwtAuthenticationWebFilter implements WebFilter {
 
 	@Override
 	public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
+		String path = exchange.getRequest().getURI().getPath();
+		if (path.startsWith("/api/user/chat/ws/info")) {
+			return chain.filter(exchange); // 인증 필터 동작 안 함
+		}
 		String token = exchange.getRequest().getHeaders().getFirst("Authorization");
 		log.info("token : " + token);
 		if (token != null && jwtUtil.validateToken(token)) {

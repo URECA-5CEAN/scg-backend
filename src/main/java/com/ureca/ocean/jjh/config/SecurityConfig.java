@@ -46,6 +46,7 @@ public class SecurityConfig {
                                 "/api/store",
                                 "/api/map/store",
                                 "/api/map/store/*",
+                                "/api/user/chat/ws",
                                 "/api/user/chat/ws/**",
                                 "/api/user/chat/ws/info",
                                 "/api/user/chat/ws/info/**"
