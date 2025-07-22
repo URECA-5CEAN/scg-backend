@@ -33,7 +33,7 @@ public class JwtAuthenticationWebFilter implements WebFilter {
 			return chain.filter(exchange); // 인증 필터 동작 안 함
 		}
 		String token = exchange.getRequest().getHeaders().getFirst("Authorization");
-		log.info("token : " + token);
+		log.info("jwt filter 내의 token : " + token);
 		if (token != null && jwtUtil.validateToken(token)) {
 			String email = jwtUtil.getEmailFromToken(token); //username의 실제 값은 auth-backend에서 email을 넣어서 보내줌.
 
