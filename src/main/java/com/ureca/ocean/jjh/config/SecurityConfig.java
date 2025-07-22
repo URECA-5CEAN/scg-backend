@@ -44,7 +44,9 @@ public class SecurityConfig {
                                 "/api/map/v3/api-docs",
                                 "/api/store",
                                 "/api/map/store",
-                                "/api/map/store/*"
+                                "/api/map/store/*",
+                                "/api/user/chat/ws/**",
+                                "/api/user/chat/ws/info/**"
                         ).permitAll()
                         .anyExchange().authenticated()
                 )
