@@ -52,8 +52,7 @@ public class SecurityConfig {
                                 "/api/user/chat/ws",
                                 "/api/user/chat/ws/**",
                                 "/api/user/chat/ws/info",
-                                "/api/user/chat/ws/info/**",
-                                "/api/chat/ws"
+                                "/api/user/chat/ws/info/**"
                         ).permitAll()
                         .anyExchange().authenticated()
                 )
