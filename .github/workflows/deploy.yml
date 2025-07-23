@@ -77,6 +77,6 @@ jobs:
           done
           
           # 새 프로세스 실행
-          nohup java -jar ${{ secrets.EC2_APP_DIR }}/${{ secrets.APP_NAME }} --server.port=8082 > ~/app.log 2>&1 &
+          nohup java -jar ${{ secrets.EC2_APP_DIR }}/${{ secrets.APP_NAME }} --server.port=8080 > ~/app.log 2>&1 &
           EOF
 
