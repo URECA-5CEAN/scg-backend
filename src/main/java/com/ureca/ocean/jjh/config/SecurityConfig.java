@@ -50,7 +50,7 @@ public class SecurityConfig {
                                 "/api/map/usage/*",
                                 "/api/ws/chat",
                                 "/api/ws/chat/info",
-                                "/api/ws/chat/info/**",
+                                "/api/ws/chat/info/**"
                         ).permitAll()
                         .anyExchange().authenticated()
                 )
