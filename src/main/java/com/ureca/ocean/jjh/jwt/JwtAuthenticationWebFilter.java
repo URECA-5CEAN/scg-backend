@@ -30,11 +30,11 @@ public class JwtAuthenticationWebFilter implements WebFilter {
 	public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
 		String path = exchange.getRequest().getURI().getPath();
 		log.info("----------------------------------"+ path + "----------------------------------");
-		if (path.startsWith("/api/we/chat/info")) {
+		if (path.startsWith("/api/ws/chat/info")) {
 			log.info(path + "ws/info 요청!");
 			return chain.filter(exchange); // 인증 필터 동작 안 함
 		}
-		if (path.startsWith("/api/we/chat")) {
+		if (path.startsWith("/api/ws/chat")) {
 			log.info(path + "/api/we/chat 요청!");
 			return chain.filter(exchange); // 인증 필터 동작 안 함
 		}
