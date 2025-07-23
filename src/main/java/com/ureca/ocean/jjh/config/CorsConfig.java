@@ -14,7 +14,7 @@ public class CorsConfig {
     public CorsWebFilter corsWebFilter() {
         CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowCredentials(false);
+        config.setAllowCredentials(true);
         config.setAllowedOriginPatterns(List.of(
                 "http://127.0.0.1:5173",
                 "http://localhost:5173",
