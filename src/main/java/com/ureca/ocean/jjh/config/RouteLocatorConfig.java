@@ -22,6 +22,8 @@ public class RouteLocatorConfig {
                         .uri("http://10.0.1.141:8082"))
                 .route("path_route", r -> r.path("/api/user/**")
                         .uri("http://10.0.2.41:8082"))
+                .route("ws_chat_route", r -> r.path("/api/ws/chat/**")
+                        .uri("ws://10.0.2.41:8082")) // WebSocket 라우팅 추가
 //                .route("path_route", r -> r.path("/api/user/**")
 //                        .uri("http://localhost:8082"))
 //                .route("host_route", r -> r.host("*.myhost.org")
