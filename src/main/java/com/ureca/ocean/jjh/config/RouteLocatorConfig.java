@@ -13,7 +13,7 @@ public class RouteLocatorConfig {
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route("websocket_route", r -> r
-                        .path("/api/ws/chat")
+                        .path("/ws/chat")
                         .uri("ws://10.0.2.41:8082")) // WebSocket 서버 주소
 
 //                // HTTP 요청: /api/ws/chat/info/** 는 http 프로토콜로
