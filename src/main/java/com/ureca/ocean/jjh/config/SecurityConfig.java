@@ -49,7 +49,8 @@ public class SecurityConfig {
                                 "/api/map/store/*",
                                 "/api/map/usage/*",
                                 "/ws/chat",
-                                "/api/user/isDupNickname"
+                                "/api/user/isDupNickname",
+                                "/api/user/isDupEmail"
                         ).permitAll()
                         .anyExchange().authenticated()
                 )
