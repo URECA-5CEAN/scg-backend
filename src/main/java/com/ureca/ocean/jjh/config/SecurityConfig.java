@@ -26,6 +26,7 @@ public class SecurityConfig {
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(entryPoint))
                 .authorizeExchange(exchange -> exchange
                         .pathMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                        .pathMatchers(HttpMethod.GET, "/api/user/article").permitAll()
                         .pathMatchers(
                                 "/",
                                 "/swagger-ui/index.html",
@@ -54,7 +55,6 @@ public class SecurityConfig {
                                 "/ws/chat",
                                 "/api/user/isDupNickname",
                                 "/api/user/isDupEmail",
-                                "/api/user/article",
                                 "/api/user/article/locations"
                         ).permitAll()
                         .anyExchange().authenticated()
