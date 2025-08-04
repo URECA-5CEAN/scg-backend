@@ -47,6 +47,7 @@ public class SecurityConfig {
                                 "/api/map/ocr",
                                 "/api/map/brand",
                                 "/api/map/store",
+                                "/api/map/stores",
                                 "/api/map/benefit/*",
                                 "/api/map/store/*",
                                 "/api/map/usage/*",
