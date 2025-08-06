@@ -56,7 +56,8 @@ public class SecurityConfig {
                                 "/ws/chat",
                                 "/api/user/isDupNickname",
                                 "/api/user/isDupEmail",
-                                "/api/user/article/locations"
+                                "/api/user/article/locations",
+                                "/api/user/article/detail"
                         ).permitAll()
                         .anyExchange().authenticated()
                 )
