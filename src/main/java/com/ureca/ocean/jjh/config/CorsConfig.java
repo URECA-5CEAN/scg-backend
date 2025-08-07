@@ -24,7 +24,8 @@ public class CorsConfig {
                 "https://localhost:5173",
                 "https://15.164.81.45",
                 "https://127.0.0.1:5500",
-                "https://jijoonghae.duckdns.org"
+                "https://jijoonghae.duckdns.org",
+                "https://jijonnghae.site/"
         ));
 
         config.addAllowedHeader("*");
