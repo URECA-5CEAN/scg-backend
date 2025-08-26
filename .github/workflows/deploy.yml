@@ -3,7 +3,8 @@ on:
   push:
     branches:
       - main
-    # v2 도 만들어야함.
+      - v2
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -33,13 +34,14 @@ jobs:
   deploy:
     name: Build Docker JAR and Deploy to EC2
     runs-on: ubuntu-latest
+    needs: test
     steps:
       - name: Checkout source code
         uses: actions/checkout@v3
 
       - name: Create application-secret.properties
         run: |
-          echo "${{ secrets.APPLICATION_SECRET_PROPERTIES }}" > src/main/resources/application-secret.properties                 
+          echo "${{ secrets.APPLICATION_SECRET_PROPERTIES }}" > src/main/resources/application-secret.properties
 
       - name: Login to DockerHub
         uses: docker/login-action@v2
@@ -49,19 +51,27 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          docker build -t jmk445/ureca-final-project-scg-backend:${{github.sha}} .         
+          docker build -t jmk445/ureca-final-project-scg-backend:${{ github.sha }} .
           docker push jmk445/ureca-final-project-scg-backend:${{ github.sha }}
 
-      - name: Save EC2 SSH key
-        run: |
-          echo "${{ secrets.EC2_KEY }}" > key.pem
-          chmod 400 key.pem
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Deploy JAR to EC2 and Run
+      - name: Deploy to EC2 via SSM
         run: |
-          ssh -o StrictHostKeyChecking=no -i key.pem ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
-          docker pull jmk445/ureca-final-project-scg-backend:${{ github.sha }}
-          docker stop ureca-final-project-scg-backend || true
-          docker rm ureca-final-project-scg-backend || true
-          docker run -d --name ureca-final-project-scg-backend -p 8080:8080 jmk445/ureca-final-project-scg-backend:${{ github.sha }}
-          EOF
+          aws ssm send-command \
+            --targets "Key=instanceIds,Values=${{ secrets.AWS_INSTANCE_ID }}" \
+            --document-name "AWS-RunShellScript" \
+            --comment "Deploy new Docker image" \
+            --parameters 'commands=[
+              "docker pull jmk445/ureca-final-project-scg-backend:${{ github.sha }}",
+              "docker stop ureca-final-project-scg-backend || true",
+              "docker rm ureca-final-project-scg-backend || true",
+              "docker run -d --name ureca-final-project-scg-backend -p 8082:8082 jmk445/ureca-final-project-scg-backend:${{ github.sha }}"
+            ]' \
+            --query "Command.CommandId" \
+            --output text
