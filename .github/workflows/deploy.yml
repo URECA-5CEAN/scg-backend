@@ -71,7 +71,7 @@ jobs:
               "docker pull jmk445/ureca-final-project-scg-backend:${{ github.sha }}",
               "docker stop ureca-final-project-scg-backend || true",
               "docker rm ureca-final-project-scg-backend || true",
-              "docker run -d --name ureca-final-project-scg-backend -p 8080:8080 jmk445/ureca-final-project-scg-backend:${{ github.sha }}"
+              "docker run -d --name ureca-final-project-scg-backend -p 8080:8080 --network ureca-network jmk445/ureca-final-project-scg-backend:${{ github.sha }}"              
             ]' \
             --query "Command.CommandId" \
             --output text
